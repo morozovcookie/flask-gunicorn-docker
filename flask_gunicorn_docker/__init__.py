@@ -5,8 +5,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from flask_bcrypt import Bcrypt
 from os import environ
 
-from flask_gunicorn_docker.api import users_api_bp
 from flask_gunicorn_docker.infrastructure import PostgresService
+from flask_gunicorn_docker.version import __version__, __api_version__
 
 
 master_engine = create_engine('postgres://{username}:{password}@{host}:{port}/{database}'.format(
@@ -35,9 +35,7 @@ flask_bcrypt = Bcrypt()
 
 def create_app():
     app = Flask(__name__)
-    app.register_blueprint(blueprint=users_api_bp)
 
-    # db.init_app(app=app)
     flask_bcrypt.init_app(app=app)
 
     return app
