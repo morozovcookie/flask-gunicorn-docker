@@ -42,7 +42,7 @@ class UserRepository(object):
         query = '''INSERT INTO users 
                         (username, email, password) 
                    VALUES
-                        (:username, :email, :password)'''
+                        (:username, :email, :password_hash)'''
 
         self._storage.execute_on_master(
             clause=query,
