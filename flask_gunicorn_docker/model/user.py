@@ -11,7 +11,7 @@ class User(Base):
 
     id = Column(name="id", type_=BigInteger, autoincrement=True, primary_key=True)
     username = Column(name="username", type_=String(255), nullable=False, unique=True)
-    email = Column(name="email", type_=String(255), nullable=False)
+    email = Column(name="email", type_=String(255), nullable=False, unique=True)
     password_hash = Column(name="password", type_=String(255), nullable=False)
 
     @property
