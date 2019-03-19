@@ -14,7 +14,7 @@ class User(Base):
     email = Column(name="email", type_=String(255), nullable=False, unique=True)
     password_hash = Column(name="password", type_=String(255), nullable=False)
 
-    def __init__(self, id: int, username: str, email: str):
+    def __init__(self, username: str, email: str, id: int = 0):
         self.id = id
         self.username = username
         self.email = email

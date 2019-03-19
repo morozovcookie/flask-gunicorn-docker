@@ -13,22 +13,22 @@ store_user_use_case = StoreUser(repository=user_repository)
 
 
 @users_api_bp.route(rule='/', methods=['GET'])
-def get_users_list() -> Tuple[str, int]:
+def get_users_list() -> Tuple[str, int, dict]:
     try:
         result = user_list_use_case.do(
             limit=request.args.get('limit', 100),
             offset=request.args.get('offset', 0)
         )
-        return jsonify(result), 200
+        return jsonify(result), 200, {'Content-Type': 'application/json'}
     except Exception as e:
-        return jsonify({'message': e.__str__()}), 500
+        return jsonify({'message': e.__str__()}), 500, {'Content-Type': 'application/json'}
 
 
 @users_api_bp.route(rule='/', methods=['POST'])
-def store_user() -> Tuple[str, int]:
+def store_user() -> Tuple[str, int, dict]:
     try:
-        store_user_use_case.do(user=None)
+        store_user_use_case.do(user=request.json)
     except Exception as e:
-        return jsonify({'message': e.__str__()}), 500
+        return jsonify({'message': e.__str__()}), 500, {'Content-Type': 'application/json'}
 
-    return '', 201
+    return '', 201, {'Content-Type': 'application/json'}
