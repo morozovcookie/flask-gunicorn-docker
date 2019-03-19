@@ -48,4 +48,4 @@ class StoreUser(object):
             email=email
         )
         user_model.password = password
-        self._repository.store(user)
+        self._repository.store(user=user_model)
