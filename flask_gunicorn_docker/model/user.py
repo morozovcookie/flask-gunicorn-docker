@@ -14,10 +14,16 @@ class User(Base):
     email = Column(name="email", type_=String(255), nullable=False, unique=True)
     password_hash = Column(name="password", type_=String(255), nullable=False)
 
+    def __init__(self, id: int, username: str, email: str):
+        self.id = id
+        self.username = username
+        self.email = email
+        self.password_hash = None
+
     @property
     def password(self):
         raise AttributeError('password: write-only field')
 
     @password.setter
-    def password(self, password):
+    def password(self, password: str):
         self.password_hash = flask_bcrypt.generate_password_hash(password).decode('utf-8')
