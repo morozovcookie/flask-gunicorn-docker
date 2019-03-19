@@ -1,29 +1,34 @@
 from abc import abstractmethod
+from typing import List
+
+from flask_gunicorn_docker.model import User
 
 
 class UsersList(object):
     class UserRepository(object):
         @abstractmethod
-        def list(self): pass
+        def list(self, limit: int, offset: int) -> List[User]: pass
 
     def __init__(self, repository: UserRepository):
         self.repository = repository
 
-    def do(self):
-        users = self.repository.list()
-        if users is None:
-            return []
+    def do(self, limit: int, offset: int):
+        users = self.repository.list(limit=limit, offset=offset)
 
-        return []
+        return [{
+            'id':       user.id,
+            'username': user.username,
+            'email':    user.email
+        } for user in users]
 
 
 class StoreUser(object):
     class UserRepository(object):
         @abstractmethod
-        def store(self): pass
+        def store(self, user: User): pass
 
     def __init__(self, repository: UserRepository):
         self.repository = repository
 
-    def do(self, user):
+    def do(self, user: dict):
         pass
