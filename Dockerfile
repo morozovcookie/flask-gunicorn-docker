@@ -6,6 +6,6 @@ WORKDIR /flask-gunicorn-docker
 ADD requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-ADD ./flask-gunicorn-docker .
+ADD flask_gunicorn_docker .
 
 EXPOSE 80
