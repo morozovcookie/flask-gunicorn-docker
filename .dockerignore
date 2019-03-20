@@ -165,3 +165,26 @@ venv.bak/
 *.iml
 out
 gen
+
+
+# dependencies
+/flask_gunicorn_docker/static/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/flask_gunicorn_docker/static/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

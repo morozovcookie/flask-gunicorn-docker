@@ -4,5 +4,16 @@ services:
     build:
       context: .
     command: ["gunicorn", "-b", "0.0.0.0:80", "-w", "4", "app:app"]
+    environment:
+      POSTGRESQL_MASTER_USERNAME: 'user'
+      POSTGRESQL_MASTER_PASSWORD: 'password'
+      POSTGRESQL_MASTER_HOST: 'localhost'
+      POSTGRESQL_MASTER_PORT: 5432
+      POSTGRESQL_MASTER_DATABASE: 'database'
+      POSTGRESQL_SLAVE_USERNAME: 'user'
+      POSTGRESQL_SLAVE_PASSWORD: 'password'
+      POSTGRESQL_SLAVE_HOST: 'localhost'
+      POSTGRESQL_SLAVE_PORT: 5432
+      POSTGRESQL_SLAVE_DATABASE: 'database'
     ports:
       - 80:80
