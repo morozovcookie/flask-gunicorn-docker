@@ -1,9 +1,12 @@
+from os import environ
+from os.path import join
+from pathlib import Path
+from logging import getLogger
 from flask import Flask
+from flask_bcrypt import Bcrypt
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from flask_bcrypt import Bcrypt
-from os import environ
 
 from flask_gunicorn_docker.infrastructure import PostgresService
 from flask_gunicorn_docker.version import __version__, __api_version__
@@ -32,9 +35,15 @@ storage = PostgresService(master=master_session, slave=slave_session)
 Base = declarative_base()
 flask_bcrypt = Bcrypt()
 
+_assets_folder = join(Path(__file__).parent, 'static', 'build', 'static')
+
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(import_name=__name__, static_folder=_assets_folder)
+
+    gunicorn_logger = getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
 
     flask_bcrypt.init_app(app=app)
 
