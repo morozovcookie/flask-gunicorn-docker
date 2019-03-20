@@ -2,7 +2,7 @@ from flask import jsonify, request
 from typing import Tuple
 
 from .blueprint import users_api_bp
-from flask_gunicorn_docker import storage
+from flask_gunicorn_docker import storage, FlaskUnicornDockerBaseException
 from flask_gunicorn_docker.repositories import UserRepository
 from flask_gunicorn_docker.usecases import UsersList, StoreUser
 
@@ -28,6 +28,8 @@ def get_users_list() -> Tuple[str, int, dict]:
 def store_user() -> Tuple[str, int, dict]:
     try:
         store_user_use_case.do(user=request.json)
+    except FlaskUnicornDockerBaseException as e:
+        return jsonify({'message': e.__str__()}), 400, {'Content-Type': 'application/json'}
     except Exception as e:
         return jsonify({'message': e.__str__()}), 500, {'Content-Type': 'application/json'}
 

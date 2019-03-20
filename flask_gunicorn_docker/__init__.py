@@ -12,6 +12,12 @@ from flask_gunicorn_docker.infrastructure import PostgresService
 from flask_gunicorn_docker.version import __version__, __api_version__
 
 
+class FlaskUnicornDockerBaseException(Exception):
+    """
+        Base class for project level exceptions
+    """
+
+
 master_engine = create_engine('postgres://{username}:{password}@{host}:{port}/{database}'.format(
     username=environ['POSTGRESQL_MASTER_USERNAME'],
     password=environ['POSTGRESQL_MASTER_PASSWORD'],
