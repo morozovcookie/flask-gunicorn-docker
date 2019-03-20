@@ -39,7 +39,7 @@ _assets_folder = join(Path(__file__).parent, 'static', 'build', 'static')
 
 
 def create_app():
-    app = Flask(import_name=__name__, static_folder=_assets_folder)
+    app = Flask(import_name=__name__, static_folder=None)
 
     gunicorn_logger = getLogger('gunicorn.error')
     app.logger.handlers = gunicorn_logger.handlers
