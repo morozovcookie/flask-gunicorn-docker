@@ -1,13 +1,13 @@
 from abc import abstractmethod
 from typing import List
 
-from flask_gunicorn_docker.model import User
+from flask_gunicorn_docker.repositories import UserModel
 
 
 class UsersList(object):
     class UserRepository(object):
         @abstractmethod
-        def list(self, limit: int, offset: int) -> List[User]: pass
+        def list(self, limit: int, offset: int) -> List[UserModel]: pass
 
     def __init__(self, repository: UserRepository):
         self._repository = repository
@@ -25,7 +25,7 @@ class UsersList(object):
 class StoreUser(object):
     class UserRepository(object):
         @abstractmethod
-        def store(self, user: User): pass
+        def store(self, user: UserModel): pass
 
     def __init__(self, repository: UserRepository):
         self._repository = repository
@@ -43,7 +43,7 @@ class StoreUser(object):
         if password is None or password == '':
             raise Exception('''password can't be None or empty''')
 
-        user_model = User(
+        user_model = UserModel(
             username=username,
             email=email
         )

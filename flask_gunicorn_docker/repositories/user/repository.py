@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from typing import List
 
-from flask_gunicorn_docker.model import User
+from .model import UserModel
 
 
 class UserRepository(object):
@@ -15,7 +15,7 @@ class UserRepository(object):
     def __init__(self, storage: Storage):
         self._storage = storage
 
-    def list(self, limit: int, offset: int) -> List[User]:
+    def list(self, limit: int, offset: int) -> List[UserModel]:
         query = '''SELECT id,
                           username,
                           email
@@ -33,12 +33,12 @@ class UserRepository(object):
         if rows is None:
             return []
 
-        return [User(id=row['id'],
-                     username=row['username'],
-                     email=row['email']
-                     ) for row in rows]
+        return [UserModel(id=row['id'],
+                          username=row['username'],
+                          email=row['email']
+                          ) for row in rows]
 
-    def store(self, user: User):
+    def store(self, user: UserModel):
         query = '''INSERT INTO users 
                         (username, email, password) 
                    VALUES

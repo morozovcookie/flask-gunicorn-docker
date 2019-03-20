@@ -2,7 +2,7 @@ from flask_gunicorn_docker import Base, flask_bcrypt
 from sqlalchemy import Column, BigInteger, String
 
 
-class User(Base):
+class UserModel(Base):
     """
         User Model for storing user related details
     """

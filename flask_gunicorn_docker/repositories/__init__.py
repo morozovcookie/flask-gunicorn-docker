@@ -1,1 +1,2 @@
-from .user import UserRepository
+from .user import UserModel, UserRepository
+
