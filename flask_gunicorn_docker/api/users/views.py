@@ -1,15 +1,10 @@
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
 from typing import Tuple
 
+from .blueprint import users_api_bp
 from flask_gunicorn_docker import storage
 from flask_gunicorn_docker.repositories import UserRepository
 from flask_gunicorn_docker.usecases import UsersList, StoreUser
-
-
-users_api_bp = Blueprint(
-    name='user_api',
-    import_name=__name__
-)
 
 user_repository = UserRepository(storage=storage)
 
