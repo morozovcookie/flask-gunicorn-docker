@@ -9,7 +9,7 @@ class UserRepository(object):
     def list(self, limit: int, offset: int) -> List[UserModel]: pass
 
 
-class UsersList(object):
+class Interactor(object):
     def __init__(self, repository: UserRepository):
         self._repository = repository
 

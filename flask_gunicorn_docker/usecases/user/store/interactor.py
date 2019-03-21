@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from flask_gunicorn_docker import FlaskUnicornDockerBaseException
+from .exceptions import InvalidUsernameValue, InvalidEmailValue, InvalidPasswordValue
 from flask_gunicorn_docker.repositories import UserModel
 
 
@@ -9,25 +9,7 @@ class UserRepository(object):
     def store(self, user: UserModel): pass
 
 
-class InvalidUsernameValue(FlaskUnicornDockerBaseException):
-    """
-        Exception will be raised when username is empty or is None
-    """
-
-
-class InvalidEmailValue(FlaskUnicornDockerBaseException):
-    """
-        Exception will be raised when email is empty or is None
-    """
-
-
-class InvalidPasswordValue(FlaskUnicornDockerBaseException):
-    """
-        Exception will be raised when password is empty or is None
-    """
-
-
-class StoreUser(object):
+class Interactor(object):
     def __init__(self, repository: UserRepository):
         self._repository = repository
 

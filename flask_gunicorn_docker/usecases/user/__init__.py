@@ -1,2 +1,2 @@
-from .store_user import StoreUser
-from .users_list import UsersList
+from .store import StoreUser
+from .list import UsersList
