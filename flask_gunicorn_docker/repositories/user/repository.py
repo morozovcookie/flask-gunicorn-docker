@@ -1,21 +1,22 @@
 from abc import abstractmethod
 from typing import List
 
-from .model import UserModel
+from .model import Model
 
 
-class UserRepository(object):
-    class Storage(object):
-        @abstractmethod
-        def execute_on_slave(self, clause, params=None, mapper=None, bind=None, **kw): pass
+class Storage(object):
+    @abstractmethod
+    def execute_on_slave(self, clause, params=None, mapper=None, bind=None, **kw): pass
 
-        @abstractmethod
-        def execute_on_master(self, clause, params=None, mapper=None, bind=None, **kw): pass
+    @abstractmethod
+    def execute_on_master(self, clause, params=None, mapper=None, bind=None, **kw): pass
 
+
+class Repository(object):
     def __init__(self, storage: Storage):
         self._storage = storage
 
-    def list(self, limit: int, offset: int) -> List[UserModel]:
+    def list(self, limit: int, offset: int) -> List[Model]:
         query = '''SELECT id,
                           username,
                           email
@@ -33,12 +34,12 @@ class UserRepository(object):
         if rows is None:
             return []
 
-        return [UserModel(id=row['id'],
-                          username=row['username'],
-                          email=row['email']
-                          ) for row in rows]
+        return [Model(id=row['id'],
+                      username=row['username'],
+                      email=row['email']
+                      ) for row in rows]
 
-    def store(self, user: UserModel):
+    def store(self, user: Model):
         query = '''INSERT INTO users 
                         (username, email, password) 
                    VALUES
