@@ -1,3 +1,4 @@
+from logging import getLogger
 from flask import jsonify, request
 from typing import Tuple
 
@@ -10,6 +11,8 @@ user_repository = UserRepository(storage=storage)
 
 user_list_use_case = UsersList(repository=user_repository)
 store_user_use_case = StoreUser(repository=user_repository)
+
+gunicorn_logger = getLogger('gunicorn.error')
 
 
 @users_api_bp.route(rule='/', methods=['GET'])
@@ -31,6 +34,7 @@ def store_user() -> Tuple[str, int, dict]:
     except FlaskUnicornDockerBaseException as e:
         return jsonify({'message': e.__str__()}), 400, {'Content-Type': 'application/json'}
     except Exception as e:
-        return jsonify({'message': e.__str__()}), 500, {'Content-Type': 'application/json'}
+        gunicorn_logger.error(e.__str__())
+        return '', 500, {'Content-Type': 'application/json'}
 
     return '', 201, {'Content-Type': 'application/json'}
