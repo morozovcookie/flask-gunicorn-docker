@@ -82,25 +82,25 @@ $ alembic upgrade head
 ├── docker-compose.yml
 ├── flask_gunicorn_docker
 │   ├── __init__.py
-│   ├── api                                                             set of api
+│   ├── api                                                             # set of api
 │   │   ├── __init__.py
-│   │   └── users                                                       user api blueprint with routes
+│   │   └── users                                                       # user api blueprint with routes
 │   │       ├── __init__.py
 │   │       ├── blueprint.py
 │   │       └── views.py
 │   ├── app.py
-│   ├── infrastructure                                                  set of connection with infrastructure
+│   ├── infrastructure                                                  # set of connection with infrastructure
 │   │   ├── __init__.py
 │   │   └── postgres.py
-│   ├── repositories                                                    set of repositories for manipulating data
+│   ├── repositories                                                    # set of repositories for manipulating data
 │   │   ├── __init__.py
 │   │   └── user
 │   │       ├── __init__.py
-│   │       ├── model.py                                                user model
-│   │       └── repository.py                                           user repository
-│   ├── static                                                          client application
+│   │       ├── model.py                                                # user model
+│   │       └── repository.py                                           # user repository
+│   ├── static                                                          # client application
 │   │   ├── README.md
-│   │   ├── build                                                       assets for production use
+│   │   ├── build                                                       # assets for production use
 │   │   │   ├── asset-manifest.json
 │   │   │   ├── favicon.ico
 │   │   │   ├── index.html
@@ -108,13 +108,13 @@ $ alembic upgrade head
 │   │   │   ├── precache-manifest.2f58fda694e4483ca3441447ae92b570.js
 │   │   │   ├── service-worker.js
 │   │   │   └── static
-│   │   ├── node_modules                                                nodejs dependencies
+│   │   ├── node_modules                                                # nodejs dependencies
 │   │   ├── package.json
-│   │   ├── public                                                      client views
+│   │   ├── public                                                      # client views
 │   │   │   ├── favicon.ico
 │   │   │   ├── index.html
 │   │   │   └── manifest.json
-│   │   ├── src                                                         client logic
+│   │   ├── src                                                         # client logic
 │   │   │   ├── App.css
 │   │   │   ├── App.js
 │   │   │   ├── App.test.js
@@ -123,18 +123,18 @@ $ alembic upgrade head
 │   │   │   ├── logo.svg
 │   │   │   └── serviceWorker.js
 │   │   └── yarn.lock
-│   ├── usecases                                                        application use cases
+│   ├── usecases                                                        # application use cases
 │   │   ├── __init__.py
-│   │   └── user                                                        set use cases for interaction with user
+│   │   └── user                                                        # set use cases for interaction with user
 │   │       ├── __init__.py
 │   │       ├── store_user.py
 │   │       └── users_list.py
 │   ├── version.py
-│   └── views                                                           routes for the serving views
+│   └── views                                                           # routes for the serving views
 │       ├── __init__.py
 │       └── index.py
-├── requirements.txt                                                    python3 project dependencies
-└── venv                                                                virtual environment
+├── requirements.txt                                                    # python3 project dependencies
+└── venv                                                                # virtual environment
 ```
 
 ## View routes
