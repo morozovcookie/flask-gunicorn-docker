@@ -8,8 +8,8 @@ Sample of Python3 Flask application with gunicorn and docker
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Migrations](#migrations)
-- [Project structure](#project structure)
-- [View routes](#view routes)
+- [Project structure](#project-structure)
+- [View routes](#view-routes)
 - [Running](#running)
 
 ## Requirements
