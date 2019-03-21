@@ -125,10 +125,15 @@ $ alembic upgrade head
 │   │   └── yarn.lock
 │   ├── usecases                                                        # application use cases
 │   │   ├── __init__.py
-│   │   └── user                                                        # set use cases for interaction with user
+│   │   └── user                                                        # set of user use cases
 │   │       ├── __init__.py
-│   │       ├── store_user.py
-│   │       └── users_list.py
+│   │       ├── list
+│   │       │   ├── __init__.py
+│   │       │   └── interactor.py
+│   │       └── store
+│   │           ├── __init__.py
+│   │           ├── exceptions.py                                       # usecase exceptions
+│   │           └── interactor.py                                       # usecase implementation
 │   ├── version.py
 │   └── views                                                           # routes for the serving views
 │       ├── __init__.py
